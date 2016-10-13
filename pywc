@@ -83,13 +83,3 @@ def main():
 
 main()
 
-#Questions
-# push to git
-
-
-# c = bytes
-# m = chars
-# l = lines
-# w = words
-
-
