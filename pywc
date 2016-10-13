@@ -1,0 +1,95 @@
+#!/usr/bin/python3
+
+import sys
+ 
+def main():
+
+	#if no options set this is defalt
+	cOption = True
+	wOption = True
+	lOption = True
+	mOption = False
+
+	optionsFound = False
+
+	files = []
+	# if options are set, set everything to false
+	for i in range(1, len(sys.argv)):
+		if sys.argv[i][0] != "-":
+			files.append(sys.argv[i])
+		else:
+			if not optionsFound:
+				cOption = False
+				wOption = False
+				lOption = False
+				optionsFound = True
+
+			if "l" in sys.argv[i]:
+				lOption = True
+			if "c" in sys.argv[i]:
+				cOption = True
+			if "w" in sys.argv[i]:
+				wOption = True
+			if "m" in sys.argv[i]:
+				mOption = True
+	
+	if len(files) == 0:
+		lines = 0
+		bytes = 0
+		words = 0
+		chars = 0		
+		for line in sys.stdin:
+			lines += 1
+			chars += len(line)
+			bytes += len(line)
+			for word in line.split():
+				words += 1
+		
+		if lOption:
+			print("%3d" %lines, end="")
+		if cOption:
+			print(" %3d" %bytes, end="")
+		if wOption:
+			print(" %3d" %words, end="")
+		if mOption:
+			print(" %3d" %chars, end="")
+		print()
+		
+			
+	for filename in files:
+		#go through files and count stuff
+		lines = 0
+		bytes = 0
+		words = 0
+		chars = 0
+		for line in open(filename):
+			lines += 1
+			chars += len(line)
+			bytes += len(line)
+			for word in line.split():
+				words += 1
+
+		#Print it pretty
+		if lOption:
+			print("%3d" %lines, end="")
+		if cOption:
+			print(" %3d" %bytes, end="")
+		if wOption:
+			print(" %3d" %words, end="")
+		if mOption:
+			print(" %3d" %chars, end="")
+		print(" ", filename)
+			
+
+main()
+
+#Questions
+# push to git
+
+
+# c = bytes
+# m = chars
+# l = lines
+# w = words
+
+
